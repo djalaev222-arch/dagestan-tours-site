@@ -1,0 +1,65 @@
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: sticky;
+  top: calc(var(--space-8) + 64px);
+}
+
+.filter-panel__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.filter-panel__field label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.filter-panel__field input,
+.filter-panel__field select {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.filter-panel__field input[type='range'] {
+  padding: 0;
+  accent-color: var(--color-accent);
+}
+
+.filter-panel__price-value {
+  font-size: var(--text-sm);
+  color: var(--color-accent-dark);
+  font-weight: 700;
+}
+
+.filter-panel__reset {
+  background: transparent;
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+}
+
+.filter-panel__reset:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+@media (max-width: 960px) {
+  .filter-panel {
+    position: static;
+  }
+}

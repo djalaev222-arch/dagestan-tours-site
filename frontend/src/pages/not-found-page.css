@@ -1,0 +1,14 @@
+.not-found-page {
+  padding-block: var(--space-10) var(--space-section);
+  text-align: center;
+}
+
+.not-found-page__title {
+  margin-inline: auto;
+  margin-bottom: var(--space-4);
+}
+
+.not-found-page__lede {
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+}

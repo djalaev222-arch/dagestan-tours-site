@@ -1,0 +1,107 @@
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-form__title {
+  font-size: var(--text-xl);
+}
+
+.booking-form__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: calc(-1 * var(--space-2));
+}
+
+.booking-form__honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.booking-form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.booking-form input,
+.booking-form textarea {
+  font-weight: 400;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.booking-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.booking-form__consent {
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.booking-form__consent input {
+  margin-top: 2px;
+  width: auto;
+  accent-color: var(--color-accent);
+}
+
+.booking-form__consent a {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+.booking-form__errors {
+  background: #fbe9e5;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  font-size: var(--text-sm);
+  overflow: hidden;
+}
+
+.booking-form--success {
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+}
+
+.booking-form--success h3 {
+  font-size: var(--text-xl);
+  color: var(--color-success);
+}
+
+@media (max-width: 560px) {
+  .booking-form__row {
+    grid-template-columns: 1fr;
+  }
+}
