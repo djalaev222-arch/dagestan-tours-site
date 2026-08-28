@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createBooking } from '../../api/client'
 import { Button } from '../ui/Button'
+import { buildContactLinks } from './contactLinks'
 import './booking-form.css'
 
 const INITIAL_STATE = {
@@ -36,8 +37,12 @@ export function BookingForm({ tourId, tourTitle }) {
     try {
       await createBooking({ tourId, ...formState })
       setStatus('success')
-      setFormState(INITIAL_STATE)
+      setFormState((prev) => ({ ...INITIAL_STATE, consent: prev.consent && false }))
     } catch (error) {
+      if (error.isNoBackend) {
+        setStatus('no-backend')
+        return
+      }
       setStatus('error')
       setErrors([error.message])
     }
@@ -46,24 +51,58 @@ export function BookingForm({ tourId, tourTitle }) {
   if (status === 'success') {
     return (
       <motion.div
-        className="booking-form booking-form--success"
-        initial={{ opacity: 0, scale: 0.97 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="booking-form booking-form--note"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h3>Заявка отправлена</h3>
-        <p>Мы свяжемся с вами в течение часа, чтобы уточнить детали поездки «{tourTitle}».</p>
-        <Button variant="ghost" onClick={() => setStatus('idle')}>
-          Отправить ещё одну заявку
+        <p className="mono-label mono-label--accent">Заявка отправлена</p>
+        <h3>Свяжемся в течение часа</h3>
+        <p>Уточним детали поездки «{tourTitle}» и удобные даты.</p>
+        <Button variant="ghost" size="sm" onClick={() => setStatus('idle')}>
+          Отправить ещё
         </Button>
+      </motion.div>
+    )
+  }
+
+  if (status === 'no-backend') {
+    const links = buildContactLinks({
+      subject: `Заявка на тур: ${tourTitle}`,
+      body: `Здравствуйте! Хочу поехать на маршрут «${tourTitle}».\nИмя: ${formState.name || '—'}\nТелефон: ${formState.phone || '—'}\nТуристов: ${formState.travelersCount}\nЖелаемая дата: ${formState.preferredDate || '—'}\nКомментарий: ${formState.comment || '—'}`
+    })
+    return (
+      <motion.div
+        className="booking-form booking-form--note"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <p className="mono-label mono-label--accent">Почти готово</p>
+        <h3>Отправьте заявку в мессенджер</h3>
+        <p>Нажмите на удобный способ — сообщение уже заполнено.</p>
+        <div className="booking-form__links">
+          <a className="btn btn--primary btn--sm" href={links.whatsapp} target="_blank" rel="noopener noreferrer">
+            <span className="btn__label">WhatsApp</span>
+          </a>
+          <a className="btn btn--ghost btn--sm" href={links.telegram} target="_blank" rel="noopener noreferrer">
+            <span className="btn__label">Telegram</span>
+          </a>
+          <a className="btn btn--ghost btn--sm" href={links.mailto}>
+            <span className="btn__label">Почта</span>
+          </a>
+        </div>
+        <button type="button" className="link-line" onClick={() => setStatus('idle')}>
+          Назад к форме
+        </button>
       </motion.div>
     )
   }
 
   return (
     <form className="booking-form" onSubmit={handleSubmit}>
-      <h3 className="booking-form__title">Оставить заявку на тур</h3>
-      <p className="booking-form__subtitle">Свяжемся в течение часа и подберём удобные даты</p>
+      <h3 className="booking-form__title">Заявка на маршрут</h3>
+      <p className="booking-form__subtitle">Ответим в течение часа и подберём удобные даты</p>
 
       <input
         type="text"
@@ -101,7 +140,9 @@ export function BookingForm({ tourId, tourTitle }) {
 
       <div className="booking-form__row">
         <label>
-          Email (опционально)
+          <span className="booking-form__lh">
+            Email <span className="booking-form__opt">необязательно</span>
+          </span>
           <input
             type="email"
             value={formState.email}
@@ -133,12 +174,14 @@ export function BookingForm({ tourId, tourTitle }) {
       </label>
 
       <label>
-        Комментарий
+        <span className="booking-form__lh">
+          Комментарий <span className="booking-form__opt">необязательно</span>
+        </span>
         <textarea
           rows="3"
           value={formState.comment}
           onChange={(event) => update({ comment: event.target.value })}
-          placeholder="Особые пожелания, вопросы по маршруту"
+          placeholder="Вопросы по маршруту, особые пожелания"
         />
       </label>
 

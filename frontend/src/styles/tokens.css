@@ -1,39 +1,47 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  --color-bg: #faf5ee;
-  --color-bg-alt: #f1e7d8;
-  --color-surface: #ffffff;
-  --color-surface-sunken: #f5efe4;
-  --color-border: #e6dac4;
-  --color-border-strong: #d8c7a3;
+  /* ---- Surfaces (warm near-black, cinematic) ---- */
+  --color-bg: #100e0c;
+  --color-bg-raised: #17130f;
+  --color-bg-sunken: #0a0908;
+  --color-surface: #1e1813;
+  --color-surface-2: #271f18;
+  --color-border: rgba(240, 230, 214, 0.12);
+  --color-border-strong: rgba(240, 230, 214, 0.24);
 
-  --color-text: #241b13;
-  --color-text-muted: #6f6155;
-  --color-text-faint: #9a8c7c;
+  /* ---- Ink ---- */
+  --color-text: #f1eadd;
+  --color-text-muted: #a99c88;
+  --color-text-faint: #6e6353;
 
-  --color-accent: #c1531f;
-  --color-accent-dark: #963f16;
-  --color-accent-soft: #f4ddc4;
-  --color-accent-contrast: #fff8ef;
+  /* ---- Single locked accent: ember ---- */
+  --color-accent: #e0703a;
+  --color-accent-bright: #f2894f;
+  --color-accent-dark: #b8551f;
+  --color-accent-soft: rgba(224, 112, 58, 0.15);
+  --color-on-accent: #140c07;
 
-  --color-ink: #1c2b2a;
-  --color-ink-soft: #3c534f;
+  --color-success: #7fae7f;
+  --color-danger: #d9694a;
 
-  --color-success: #2f6b4f;
-  --color-danger: #a3311c;
-
-  --font-display: 'Yeseva One', 'Georgia', serif;
-  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  /* ---- Type ---- */
+  --font-display: 'Bricolage Grotesque', 'Georgia', serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.3rem);
-  --text-xl: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem);
-  --text-2xl: clamp(1.9rem, 1.5rem + 1.6vw, 2.75rem);
-  --text-hero: clamp(2.6rem, 1.6rem + 4vw, 5rem);
+  --text-sm: 0.8125rem;
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.04rem + 0.34vw, 1.3rem);
+  --text-xl: clamp(1.45rem, 1.2rem + 1vw, 2rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2vw, 3.15rem);
+  --text-3xl: clamp(2.4rem, 1.7rem + 3vw, 4rem);
+  --text-hero: clamp(2.7rem, 1.5rem + 4.4vw, 5.6rem);
 
+  --tracking-label: 0.22em;
+
+  /* ---- Space ---- */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -42,21 +50,25 @@
   --space-6: 2rem;
   --space-8: 3rem;
   --space-10: 4rem;
-  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --space-12: 6rem;
+  --space-section: clamp(3.75rem, 2.75rem + 4vw, 6.25rem);
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
+  /* ---- Shape: one consistent near-sharp system ---- */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-pill: 2px;
 
-  --shadow-sm: 0 2px 8px rgba(36, 27, 19, 0.06);
-  --shadow-md: 0 12px 32px -8px rgba(36, 27, 19, 0.14);
-  --shadow-lg: 0 24px 60px -16px rgba(36, 27, 19, 0.22);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 40px 90px -20px rgba(0, 0, 0, 0.7);
 
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 550ms;
+  --duration-fast: 160ms;
+  --duration-normal: 320ms;
+  --duration-slow: 620ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --container-width: 1240px;
+  --container-width: 1320px;
+  --container-narrow: 940px;
+  --header-h: 72px;
 }

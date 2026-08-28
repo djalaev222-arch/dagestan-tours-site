@@ -1,19 +1,19 @@
 .legal-page {
-  padding-block: var(--space-8) var(--space-section);
+  padding-block: clamp(3rem, 8vw, 6rem) var(--space-section);
 }
 
 .legal-page__content {
-  max-width: 72ch;
+  max-width: 68ch;
 }
 
 .legal-page__content h1 {
-  font-size: var(--text-2xl);
-  margin-bottom: var(--space-6);
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-8);
 }
 
 .legal-page__content h2 {
   font-size: var(--text-lg);
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
   margin-bottom: var(--space-3);
 }
 
@@ -25,4 +25,9 @@
 
 .legal-page__content ul {
   padding-left: 1.4rem;
+}
+
+.legal-page__content a {
+  color: var(--color-accent-bright);
+  text-decoration: underline;
 }

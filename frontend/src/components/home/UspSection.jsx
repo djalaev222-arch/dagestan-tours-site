@@ -6,39 +6,41 @@ const ITEMS = [
     text: 'Ведут маршруты по своим районам — Дубки, Гуниб, Хунзах. Знают, где сесть на закат и куда не стоит ехать после дождя.'
   },
   {
-    title: 'Маршрут не по шаблону',
-    text: 'Не возим по одному и тому же кругу «каньон — водопад — рынок». В каждом туре есть точка, до которой самостоятельно не доедешь.'
+    title: 'Маршрут не по кругу',
+    text: 'Не возим по одной и той же связке «каньон — водопад — рынок». В каждом туре есть точка, до которой самостоятельно не доедешь.'
   },
   {
-    title: 'Внедорожник, когда он нужен',
-    text: 'На серпантины и грунтовки — УАЗ или Delica, а не микроавтобус. Дорога — часть тура, а не проблема.'
+    title: 'Внедорожник там, где нужен',
+    text: 'На серпантины и грунтовки — УАЗ или Delica, а не большой автобус. Дорога здесь часть маршрута, а не потерянное время.'
   },
   {
-    title: 'На связи до и после тура',
-    text: 'Отвечаем в мессенджере в день заявки, помогаем с билетами и жильём в Махачкале до и после маршрута.'
+    title: 'На связи до и после',
+    text: 'Отвечаем в мессенджере в день заявки, помогаем с билетами и жильём в Махачкале до начала маршрута и после него.'
   }
 ]
 
 export function UspSection() {
   return (
-    <section className="section usp">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">Почему с нами</span>
-          <h2 className="section-title">Не турагрегатор, а команда проводников</h2>
-        </Reveal>
+    <section className="section approach">
+      <div className="container approach__grid">
+        <div className="approach__aside">
+          <Reveal>
+            <p className="mono-label mono-label--accent">Почему с нами</p>
+            <h2 className="approach__title">Не турагрегатор, а команда проводников</h2>
+          </Reveal>
+        </div>
 
-        <div className="usp__grid">
+        <ol className="approach__list">
           {ITEMS.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.08} className="usp__reveal">
-              <div className="usp__card">
-                <span className="usp__index">{String(index + 1).padStart(2, '0')}</span>
+            <Reveal as="li" key={item.title} delay={index * 0.06} className="approach__item">
+              <span className="approach__index">{String(index + 1).padStart(2, '0')}</span>
+              <div className="approach__body">
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </div>
             </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )

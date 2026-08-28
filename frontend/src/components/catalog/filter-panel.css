@@ -2,12 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  padding: var(--space-5);
   position: sticky;
-  top: calc(var(--space-8) + 64px);
+  top: calc(var(--header-h) + var(--space-5));
+  background: var(--color-bg);
+}
+
+.filter-panel__count {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-accent);
 }
 
 .filter-panel__field {
@@ -17,48 +22,57 @@
 }
 
 .filter-panel__field label {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.filter-panel__price-value {
+  color: var(--color-accent);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .filter-panel__field input,
 .filter-panel__field select {
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.8rem;
   border: 1px solid var(--color-border-strong);
-  background: var(--color-bg);
+  background: var(--color-surface);
   color: var(--color-text);
+}
+
+.filter-panel__field input:focus-visible,
+.filter-panel__field select:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.filter-panel__field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+    linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
 }
 
 .filter-panel__field input[type='range'] {
   padding: 0;
   accent-color: var(--color-accent);
-}
-
-.filter-panel__price-value {
-  font-size: var(--text-sm);
-  color: var(--color-accent-dark);
-  font-weight: 700;
+  background: transparent;
+  border: none;
 }
 
 .filter-panel__reset {
-  background: transparent;
-  border: 1.5px dashed var(--color-border-strong);
-  border-radius: var(--radius-pill);
-  padding: 0.6rem 1rem;
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-text-muted);
-  transition: border-color var(--duration-fast), color var(--duration-fast);
+  align-self: flex-start;
 }
 
-.filter-panel__reset:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent-dark);
-}
-
-@media (max-width: 960px) {
+@media (max-width: 900px) {
   .filter-panel {
     position: static;
   }

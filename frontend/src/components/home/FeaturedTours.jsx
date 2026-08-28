@@ -1,64 +1,66 @@
-import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useTours } from '../../hooks/useTours'
-import { TourCard } from '../tours/TourCard'
 import { Reveal } from '../ui/Reveal'
-import { Button } from '../ui/Button'
-import { IconArrowRight } from '../ui/icons'
+import { PriceTag } from '../ui/PriceTag'
+import { IconArrowUpRight } from '../ui/icons'
+
+function formatDuration(tour) {
+  const days = `${tour.days} ${tour.days === 1 ? 'день' : tour.days < 5 ? 'дня' : 'дней'}`
+  if (tour.nights === 0) return days
+  return `${days} · ${tour.nights} ${tour.nights === 1 ? 'ночь' : tour.nights < 5 ? 'ночи' : 'ночей'}`
+}
 
 export function FeaturedTours() {
   const { tours, isLoading } = useTours({})
   const featured = tours.slice(0, 4)
-  const scrollerRef = useRef(null)
-
-  function scrollByCard(direction) {
-    const scroller = scrollerRef.current
-    if (!scroller) return
-    const card = scroller.querySelector('.featured__item')
-    const amount = card ? card.getBoundingClientRect().width + 16 : scroller.clientWidth * 0.85
-    scroller.scrollBy({ left: direction * amount, behavior: 'smooth' })
-  }
 
   return (
-    <section className="section featured">
+    <section className="section featured section--sunken">
       <div className="container">
-        <Reveal className="section-head featured__head">
+        <Reveal className="featured__head">
           <div>
-            <span className="eyebrow">Популярные маршруты</span>
-            <h2 className="section-title">Туры, которые бронируют чаще всего</h2>
+            <p className="mono-label mono-label--accent">Популярные маршруты</p>
+            <h2 className="section-title">Что бронируют чаще всего</h2>
           </div>
-          <Button to="/catalog" variant="ghost" withArrow>
+          <Link to="/catalog" className="link-line">
             Весь каталог
-          </Button>
+            <IconArrowUpRight size={15} />
+          </Link>
         </Reveal>
 
         {isLoading ? (
-          <p className="featured__loading">Загружаем туры…</p>
-        ) : (
-          <div className="featured__carousel">
-            <div className="featured__grid" ref={scrollerRef}>
-              {featured.map((tour, index) => (
-                <Reveal key={tour.id} delay={index * 0.08} className="featured__item">
-                  <TourCard tour={tour} />
-                </Reveal>
-              ))}
-            </div>
-            <button
-              type="button"
-              className="featured__nav featured__nav--prev"
-              onClick={() => scrollByCard(-1)}
-              aria-label="Предыдущие туры"
-            >
-              <IconArrowRight />
-            </button>
-            <button
-              type="button"
-              className="featured__nav featured__nav--next"
-              onClick={() => scrollByCard(1)}
-              aria-label="Следующие туры"
-            >
-              <IconArrowRight />
-            </button>
+          <div className="featured__list">
+            {[0, 1, 2, 3].map((i) => (
+              <div className="featured__row featured__row--skeleton" key={i} />
+            ))}
           </div>
+        ) : (
+          <ol className="featured__list">
+            {featured.map((tour, index) => (
+              <Reveal as="li" key={tour.id} delay={index * 0.05}>
+                <Link to={`/catalog/${tour.id}`} className="featured__row">
+                  <span className="featured__index">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="featured__media">
+                    <img src={tour.cover} alt={tour.title} loading="lazy" width="640" height="420" />
+                  </div>
+                  <div className="featured__content">
+                    <p className="featured__meta mono-label">
+                      {tour.region} · {formatDuration(tour)}
+                    </p>
+                    <h3 className="featured__title">{tour.title}</h3>
+                    <p className="featured__line">{tour.heroLine}</p>
+                    <div className="featured__foot">
+                      <PriceTag price={tour.priceFrom} />
+                      <span className="featured__cta">
+                        Подробнее
+                        <IconArrowUpRight size={16} />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </ol>
         )}
       </div>
     </section>

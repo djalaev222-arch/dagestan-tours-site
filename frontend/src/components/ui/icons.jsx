@@ -17,6 +17,15 @@ export function IconArrowRight({ size = 18, className = '' }) {
   )
 }
 
+export function IconArrowUpRight({ size = 18, className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" className={`icon icon-arrow ${className}`} aria-hidden="true" {...STROKE}>
+      <line x1="7" y1="17" x2="17" y2="7" />
+      <polyline points="7 7 17 7 17 17" />
+    </svg>
+  )
+}
+
 export function IconPhone({ size = 16, className = '' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" className={`icon icon-bounce ${className}`} aria-hidden="true" {...STROKE}>

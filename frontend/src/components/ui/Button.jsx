@@ -16,7 +16,7 @@ export function Button({
   const classes = `btn btn--${variant} btn--${size} ${className}`.trim()
   const content = (
     <>
-      {children}
+      <span className="btn__label">{children}</span>
       {withArrow && <IconArrowRight className="btn__arrow" />}
     </>
   )

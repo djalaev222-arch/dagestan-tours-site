@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { useInView, useReducedMotion } from 'framer-motion'
 
 const STATS = [
-  { value: 1400, suffix: '+', label: 'туристов провели по Дагестану' },
-  { value: 26, suffix: '', label: 'проверенных маршрутов' },
-  { value: 9, suffix: ' лет', label: 'работаем гидами в горах' },
-  { value: 4.9, suffix: '', label: 'средняя оценка туров', isDecimal: true }
+  { value: 1400, suffix: '+', label: 'путешественников в горах Дагестана' },
+  { value: 26, suffix: '', label: 'маршрутов пройдено и проверено' },
+  { value: 9, suffix: ' лет', label: 'водим группы в горы' },
+  { value: 4.9, suffix: '', label: 'средняя оценка после тура', isDecimal: true }
 ]
 
 function Counter({ value, suffix, isDecimal }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-40px' })
-  const [display, setDisplay] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+  const [display, setDisplay] = useState(shouldReduceMotion ? value : 0)
 
   useEffect(() => {
-    if (!isInView) return
-    const duration = 1200
+    if (!isInView || shouldReduceMotion) return
+    const duration = 1300
     const start = performance.now()
     let frameId
 
@@ -28,10 +29,10 @@ function Counter({ value, suffix, isDecimal }) {
 
     frameId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frameId)
-  }, [isInView, value])
+  }, [isInView, value, shouldReduceMotion])
 
   return (
-    <span ref={ref} className="stats__value">
+    <span ref={ref} className="ledger__value">
       {isDecimal ? display.toFixed(1) : Math.round(display)}
       {suffix}
     </span>
@@ -40,12 +41,12 @@ function Counter({ value, suffix, isDecimal }) {
 
 export function Stats() {
   return (
-    <section className="stats">
-      <div className="container stats__grid">
+    <section className="ledger" aria-label="Коротко о нас">
+      <div className="container ledger__grid">
         {STATS.map((stat) => (
-          <div key={stat.label} className="stats__item">
+          <div key={stat.label} className="ledger__item">
             <Counter value={stat.value} suffix={stat.suffix} isDecimal={stat.isDecimal} />
-            <span className="stats__label">{stat.label}</span>
+            <span className="ledger__label">{stat.label}</span>
           </div>
         ))}
       </div>

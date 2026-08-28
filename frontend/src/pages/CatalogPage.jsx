@@ -15,7 +15,7 @@ export function CatalogPage() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebounced({ q: filters.q, maxPrice: filters.maxPrice })
-    }, 350)
+    }, 300)
     return () => clearTimeout(timeoutId)
   }, [filters.q, filters.maxPrice])
 
@@ -35,41 +35,49 @@ export function CatalogPage() {
     <div className="catalog-page">
       <div className="container">
         <Reveal className="catalog-page__head">
-          <span className="eyebrow">Каталог туров</span>
-          <h1 className="section-title">Маршруты по Дагестану</h1>
+          <p className="mono-label mono-label--accent">Каталог маршрутов</p>
+          <h1 className="catalog-page__title">Маршруты по Дагестану</h1>
           <p className="section-lede">
-            От однодневных выездов к бархану Сарыкум до многодневного треккинга — выбирайте по типу, сложности и
-            бюджету.
+            От однодневных выездов к бархану Сарыкум до многодневного треккинга на Шалбуздаг. Фильтруйте по типу,
+            сложности и бюджету.
           </p>
         </Reveal>
 
         <div className="catalog-page__layout">
           <aside>
-            <FilterPanel filters={filters} onChange={setFilters} />
+            <FilterPanel filters={filters} onChange={setFilters} resultCount={tours.length} isLoading={isLoading} />
           </aside>
 
           <div className="catalog-page__results">
-            {isLoading && <p className="catalog-page__state">Загружаем туры…</p>}
             {error && <p className="catalog-page__state catalog-page__state--error">{error}</p>}
             {!isLoading && !error && tours.length === 0 && (
-              <p className="catalog-page__state">Под эти фильтры туров не нашлось. Попробуйте изменить параметры.</p>
+              <div className="catalog-page__empty">
+                <p>Под эти условия маршрутов не нашлось.</p>
+                <button type="button" onClick={() => setFilters(DEFAULT_FILTERS)} className="link-line">
+                  Сбросить фильтры
+                </button>
+              </div>
             )}
 
-            <div className="catalog-page__grid">
-              <AnimatePresence mode="popLayout">
-                {tours.map((tour) => (
-                  <motion.div
-                    key={tour.id}
-                    layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -16 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <TourCard tour={tour} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+            <div className="catalog-page__grid" data-loading={isLoading ? 'true' : undefined}>
+              {isLoading
+                ? [0, 1, 2, 3, 4, 5].map((i) => <div key={i} className="catalog-page__skeleton" />)
+                : (
+                  <AnimatePresence mode="popLayout">
+                    {tours.map((tour) => (
+                      <motion.div
+                        key={tour.id}
+                        layout
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <TourCard tour={tour} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                )}
             </div>
           </div>
         </div>

@@ -1,46 +1,46 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { TypeBadge, DifficultyBadge } from '../ui/Badge'
+import { DifficultyBadge } from '../ui/Badge'
 import { PriceTag } from '../ui/PriceTag'
 import { RatingStars } from '../ui/RatingStars'
-import { IconClock, IconMapPin } from '../ui/icons'
+import { IconArrowUpRight } from '../ui/icons'
 import './tour-card.css'
 
 export function TourCard({ tour }) {
+  const shouldReduceMotion = useReducedMotion()
+
+  function durationText() {
+    const days = `${tour.days} ${tour.days === 1 ? 'день' : tour.days < 5 ? 'дня' : 'дней'}`
+    return tour.nights > 0 ? `${days} · ${tour.nights} ноч.` : days
+  }
+
   return (
     <motion.article
       className="tour-card"
-      whileHover={{ y: -6 }}
+      whileHover={shouldReduceMotion ? undefined : { y: -6 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link to={`/catalog/${tour.id}`} className="tour-card__link">
-        <div className="tour-card__image-wrap">
-          <img src={tour.cover} alt={tour.title} loading="lazy" className="tour-card__image" />
-          <div className="tour-card__badges">
-            <TypeBadge type={tour.type} />
-            <DifficultyBadge difficulty={tour.difficulty} />
-          </div>
+        <div className="tour-card__media">
+          <img src={tour.cover} alt={tour.title} loading="lazy" width="600" height="440" className="tour-card__image" />
+          <span className="tour-card__region mono-label">{tour.region}</span>
+          <span className="tour-card__go" aria-hidden="true">
+            <IconArrowUpRight size={16} />
+          </span>
         </div>
 
         <div className="tour-card__body">
           <div className="tour-card__meta">
-            <span className="tour-card__region">
-              <IconMapPin />
-              {tour.region}
-            </span>
+            <span className="mono-label">{durationText()}</span>
             <RatingStars rating={tour.rating} reviewsCount={tour.reviewsCount} />
           </div>
 
           <h3 className="tour-card__title">{tour.title}</h3>
-          <p className="tour-card__description">{tour.shortDescription}</p>
+          <p className="tour-card__line">{tour.heroLine}</p>
 
-          <div className="tour-card__footer">
-            <span className="tour-card__duration">
-              <IconClock />
-              {tour.days} {tour.days === 1 ? 'день' : 'дня'}
-              {tour.nights > 0 ? ` / ${tour.nights} ${tour.nights === 1 ? 'ночь' : 'ночи'}` : ''}
-            </span>
+          <div className="tour-card__foot">
             <PriceTag price={tour.priceFrom} />
+            {tour.difficulty === 'hard' && <DifficultyBadge difficulty={tour.difficulty} />}
           </div>
         </div>
       </Link>

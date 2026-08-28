@@ -5,6 +5,7 @@ import { Footer } from './Footer'
 export function Layout() {
   return (
     <>
+      <div className="grain" aria-hidden="true" />
       <Header />
       <main>
         <Outlet />
