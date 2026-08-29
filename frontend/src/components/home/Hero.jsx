@@ -9,108 +9,100 @@ export function Hero() {
   const ref = useRef(null)
   const shouldReduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.18])
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 64])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.14])
 
   const container = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } }
+    visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
   }
   const word = {
     hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: '0.6em' },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
   }
 
   return (
-    <section className="hero bleed-top" ref={ref}>
-      <motion.div
-        className="hero__backdrop"
-        aria-hidden="true"
-        style={shouldReduceMotion ? undefined : { y: imageY, scale: imageScale }}
-      >
-        <img
-          src={`${import.meta.env.BASE_URL}photos/shalbuzdag-slopes.jpg`}
-          alt=""
-          width="1920"
-          height="1282"
-          loading="eager"
-          fetchPriority="high"
-          className="hero__image"
-        />
-      </motion.div>
-      <div className="hero__scrim" aria-hidden="true" />
+    <section className="hero" ref={ref}>
+      <div className="hero__glow" aria-hidden="true" />
 
-      <motion.div
-        className="container hero__inner"
-        style={shouldReduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
-      >
-        <motion.p
-          className="hero__eyebrow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <span className="hero__eyebrow-dot" aria-hidden="true" />
-          Малые группы · гиды из местных сёл
-        </motion.p>
+      <div className="container hero__grid">
+        <div className="hero__content">
+          <motion.p
+            className="hero__eyebrow"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="hero__eyebrow-dot" aria-hidden="true" />
+            Малые группы · гиды из местных сёл
+          </motion.p>
 
-        <motion.h1 className="hero__title" variants={container} initial="hidden" animate="visible">
-          {TITLE_LINES.map((line, lineIndex) => (
-            <span className="hero__title-line" key={lineIndex}>
-              {line.map((w, i) => (
-                <span className="hero__word" key={i}>
-                  <motion.span className="hero__word-inner" variants={word}>
-                    {w}
-                  </motion.span>
-                </span>
-              ))}
-            </span>
-          ))}
-        </motion.h1>
+          <motion.h1 className="hero__title" variants={container} initial="hidden" animate="visible">
+            {TITLE_LINES.map((line, lineIndex) => (
+              <span className="hero__title-line" key={lineIndex}>
+                {line.map((w, i) => (
+                  <span className="hero__word" key={i}>
+                    <motion.span className="hero__word-inner" variants={word}>
+                      {w}
+                    </motion.span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </motion.h1>
 
-        <motion.p
-          className="hero__lede"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Маршруты ведут гиды из своих сёл — малыми группами, на внедорожниках, с ночёвками в горных аулах.
-        </motion.p>
+          <motion.p
+            className="hero__lede"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Маршруты по горам, каньонам и древним городам — малыми группами, на внедорожниках, с ночёвками в аулах.
+          </motion.p>
+
+          <motion.div
+            className="hero__actions"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.57, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Link to="/catalog" className="hero-cta">
+              <span className="hero-cta__text">Выбрать маршрут</span>
+              <span className="hero-cta__badge" aria-hidden="true">
+                <IconArrowRight size={17} />
+              </span>
+            </Link>
+            <Link to="/about" className="hero-cta-link">
+              <span>Как устроены туры</span>
+              <IconArrowRight size={14} />
+            </Link>
+          </motion.div>
+        </div>
 
         <motion.div
-          className="hero__actions"
-          initial={{ opacity: 0, y: 16 }}
+          className="hero__figure"
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Link to="/catalog" className="hero-cta">
-            <span className="hero-cta__text">Выбрать маршрут</span>
-            <span className="hero-cta__badge" aria-hidden="true">
-              <IconArrowRight size={20} />
-            </span>
-          </Link>
-          <Link to="/about" className="hero-cta-link">
-            <span>Как устроены туры</span>
-            <IconArrowRight size={15} />
-          </Link>
+          <div className="hero__frame">
+            <motion.img
+              src={`${import.meta.env.BASE_URL}photos/shalbuzdag-slopes.jpg`}
+              alt="Снежные вершины и зелёные склоны горного Дагестана"
+              width="1920"
+              height="1282"
+              loading="eager"
+              fetchPriority="high"
+              className="hero__image"
+              style={shouldReduceMotion ? undefined : { y: imageY, scale: imageScale }}
+            />
+          </div>
+          <div className="hero__badge">
+            <strong>9&nbsp;лет</strong>
+            <span>водим группы в горах</span>
+          </div>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="hero__scroll"
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      >
-        <span className="hero__scroll-track">
-          <span className="hero__scroll-dot" />
-        </span>
-        <span className="mono-label">прокрутите</span>
-      </motion.div>
+      </div>
     </section>
   )
 }

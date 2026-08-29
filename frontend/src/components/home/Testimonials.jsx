@@ -37,7 +37,7 @@ function Stars({ rating }) {
 
 export function Testimonials() {
   return (
-    <section className="section testimonials section--raised">
+    <section className="section testimonials section--sunken">
       <div className="container">
         <Reveal className="testimonials__head">
           <p className="mono-label mono-label--accent">Отзывы</p>

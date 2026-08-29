@@ -17,7 +17,7 @@ const PHONE_TEXT = '+7 928 000-00-00'
 
 // Routes that render a full-bleed photo hero behind the transparent header.
 function hasHeroBehind(pathname) {
-  return pathname === '/' || pathname === '/about' || /^\/catalog\/[^/]+$/.test(pathname)
+  return pathname === '/about' || /^\/catalog\/[^/]+$/.test(pathname)
 }
 
 export function Header() {

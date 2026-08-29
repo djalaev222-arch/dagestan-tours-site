@@ -27,9 +27,9 @@
 }
 
 .btn--lg {
-  --btn-py: 1.1rem;
-  --btn-px: 2.1rem;
-  font-size: var(--text-base);
+  --btn-py: 0.95rem;
+  --btn-px: 1.8rem;
+  font-size: var(--text-sm);
 }
 
 .btn:active {

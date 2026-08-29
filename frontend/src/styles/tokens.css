@@ -1,52 +1,52 @@
 :root {
   color-scheme: light;
 
-  /* ---- Surfaces: warm daylight, alpine ---- */
-  --color-bg: #f6f4ef;
-  --color-bg-raised: #ffffff;
-  --color-bg-sunken: #efeae1;
-  --color-surface: #ffffff;
-  --color-surface-2: #f0ece3;
-  --color-border: rgba(27, 30, 35, 0.12);
-  --color-border-strong: rgba(27, 30, 35, 0.22);
+  /* ---- Surfaces: warm stone / limestone daylight ---- */
+  --color-bg: #e9e3d6;
+  --color-bg-raised: #fbf8f2;
+  --color-bg-sunken: #e1d9c8;
+  --color-surface: #fbf8f2;
+  --color-surface-2: #efe9dc;
+  --color-border: rgba(38, 32, 24, 0.14);
+  --color-border-strong: rgba(38, 32, 24, 0.26);
 
   /* ---- Ink ---- */
-  --color-text: #1b1e23;
-  --color-text-muted: #545961;
-  --color-text-faint: #6e747d;
+  --color-text: #241f19;
+  --color-text-muted: #5c554a;
+  --color-text-faint: #857c6d;
 
   /* ---- Accent: terracotta ---- */
-  --color-accent: #e4572e;
-  --color-accent-bright: #f26a3e;
-  --color-accent-dark: #c4431f;
-  --color-accent-soft: rgba(228, 87, 46, 0.12);
-  --color-on-accent: #ffffff;
+  --color-accent: #cc5230;
+  --color-accent-bright: #e0653f;
+  --color-accent-dark: #a53f22;
+  --color-accent-soft: rgba(204, 82, 48, 0.14);
+  --color-on-accent: #fbf8f2;
 
   /* ---- Supporting tones ---- */
-  --color-blue: #4a6d8c;
-  --color-blue-bright: #5b83a6;
-  --color-blue-soft: rgba(74, 109, 140, 0.12);
-  --color-sand: #d8c3a5;
-  --color-sand-soft: rgba(216, 195, 165, 0.28);
+  --color-blue: #3f6076;
+  --color-blue-bright: #517a94;
+  --color-blue-soft: rgba(63, 96, 118, 0.14);
+  --color-sand: #cbb590;
+  --color-sand-soft: rgba(203, 181, 144, 0.32);
 
-  --color-success: #3f7d58;
-  --color-danger: #c4431f;
+  --color-success: #3a6f4e;
+  --color-danger: #a53f22;
 
   /* ---- Type ---- */
-  --font-display: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Spectral', 'Georgia', 'Times New Roman', serif;
   --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
   --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1.04rem + 0.34vw, 1.3rem);
-  --text-xl: clamp(1.4rem, 1.18rem + 0.9vw, 1.9rem);
-  --text-2xl: clamp(1.85rem, 1.4rem + 1.9vw, 2.9rem);
-  --text-3xl: clamp(2.2rem, 1.6rem + 2.7vw, 3.6rem);
-  --text-hero: clamp(2.6rem, 1.5rem + 4.1vw, 5.1rem);
+  --text-lg: clamp(1.1rem, 1.03rem + 0.3vw, 1.25rem);
+  --text-xl: clamp(1.35rem, 1.16rem + 0.75vw, 1.75rem);
+  --text-2xl: clamp(1.7rem, 1.35rem + 1.5vw, 2.5rem);
+  --text-3xl: clamp(2rem, 1.55rem + 2vw, 3rem);
+  --text-hero: clamp(2.3rem, 1.7rem + 2.4vw, 3.6rem);
 
-  --tracking-label: 0.18em;
+  --tracking-label: 0.16em;
 
   /* ---- Space ---- */
   --space-1: 0.25rem;

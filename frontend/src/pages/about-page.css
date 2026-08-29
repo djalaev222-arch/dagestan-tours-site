@@ -32,8 +32,8 @@
   padding-bottom: clamp(2.5rem, 7vh, 4rem);
 }
 
-.about-hero__kicker {
-  color: rgba(255, 255, 255, 0.8);
+.about-hero__inner .about-hero__kicker {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .about-hero__title {
