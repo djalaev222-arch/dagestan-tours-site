@@ -8,6 +8,8 @@ const STATS = [
   { value: 4.9, suffix: '', label: 'средняя оценка после тура', isDecimal: true }
 ]
 
+const JOURNAL_RANGE = '2017 — 2026'
+
 function Counter({ value, suffix, isDecimal }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-40px' })
@@ -42,13 +44,22 @@ function Counter({ value, suffix, isDecimal }) {
 export function Stats() {
   return (
     <section className="ledger" aria-label="Коротко о нас">
-      <div className="container ledger__grid">
-        {STATS.map((stat) => (
-          <div key={stat.label} className="ledger__item">
-            <Counter value={stat.value} suffix={stat.suffix} isDecimal={stat.isDecimal} />
-            <span className="ledger__label">{stat.label}</span>
+      <div className="container">
+        <div className="ledger__panel">
+          <div className="ledger__head">
+            <span className="mono-label mono-label--accent">// экспедиционный журнал</span>
+            <span className="mono-label">{JOURNAL_RANGE}</span>
           </div>
-        ))}
+          <div className="ledger__grid">
+            {STATS.map((stat, index) => (
+              <div key={stat.label} className="ledger__item">
+                <span className="ledger__idx" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <Counter value={stat.value} suffix={stat.suffix} isDecimal={stat.isDecimal} />
+                <span className="ledger__label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

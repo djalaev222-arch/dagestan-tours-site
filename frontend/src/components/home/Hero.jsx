@@ -1,6 +1,7 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { Button } from '../ui/Button'
+import { IconArrowRight } from '../ui/icons'
 
 const TITLE_LINES = [['Дагестан'], ['не', 'по', 'путеводителю']]
 
@@ -84,13 +85,30 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Button to="/catalog" size="lg" withArrow>
-            Смотреть маршруты
-          </Button>
-          <Button to="/about" size="lg" variant="on-photo">
-            Как мы водим
-          </Button>
+          <Link to="/catalog" className="hero-cta">
+            <span className="hero-cta__text">Выбрать маршрут</span>
+            <span className="hero-cta__badge" aria-hidden="true">
+              <IconArrowRight size={20} />
+            </span>
+          </Link>
+          <Link to="/about" className="hero-cta-link">
+            <span>Как устроены туры</span>
+            <IconArrowRight size={15} />
+          </Link>
         </motion.div>
+      </motion.div>
+
+      <motion.div
+        className="hero__scroll"
+        aria-hidden="true"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1 }}
+      >
+        <span className="hero__scroll-track">
+          <span className="hero__scroll-dot" />
+        </span>
+        <span className="mono-label">прокрутите</span>
       </motion.div>
     </section>
   )
