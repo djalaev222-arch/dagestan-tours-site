@@ -47,7 +47,7 @@ export function Stats() {
       <div className="container">
         <div className="ledger__panel">
           <div className="ledger__head">
-            <span className="mono-label mono-label--accent">// экспедиционный журнал</span>
+            <span className="mono-label mono-label--accent">Тропы в цифрах</span>
             <span className="mono-label">{JOURNAL_RANGE}</span>
           </div>
           <div className="ledger__grid">

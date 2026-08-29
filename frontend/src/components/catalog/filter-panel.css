@@ -3,10 +3,12 @@
   flex-direction: column;
   gap: var(--space-5);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   position: sticky;
   top: calc(var(--header-h) + var(--space-5));
-  background: var(--color-bg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .filter-panel__count {
@@ -42,7 +44,8 @@
 .filter-panel__field select {
   padding: 0.7rem 0.8rem;
   border: 1px solid var(--color-border-strong);
-  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
   color: var(--color-text);
 }
 

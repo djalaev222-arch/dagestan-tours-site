@@ -10,9 +10,9 @@ const GUIDES = [
 ]
 
 const PRINCIPLES = [
-  'Новый маршрут появляется в каталоге только после того, как кто-то из команды проехал его целиком.',
-  'Если дорога неудобна зимой или после дождя — мы пишем это в описании, а не прячем в мелкий шрифт.',
-  'Группы держим маленькими: так гид успевает поговорить с каждым и не приходится ждать отставших.'
+  { title: 'Сначала едем сами', text: 'Маршрут попадает в каталог только после того, как команда прошла его целиком.' },
+  { title: 'Честно про дорогу', text: 'Если трасса тяжёлая зимой или после дождя — пишем это в описании, а не мелким шрифтом.' },
+  { title: 'Малые группы', text: 'Гид успевает поговорить с каждым, и не приходится ждать отставших.' }
 ]
 
 export function AboutPage() {
@@ -24,17 +24,16 @@ export function AboutPage() {
           <div className="about-hero__scrim" />
         </div>
         <div className="container about-hero__inner">
-          <p className="mono-label tour-hero__coords">С 2017 года · Махачкала</p>
-          <h1 className="about-hero__title">Начали с одного маршрута по Сулакскому каньону</h1>
+          <p className="mono-label about-hero__kicker">С 2017 года · Махачкала</p>
+          <h1 className="about-hero__title">Команда проводников по горному Дагестану</h1>
         </div>
       </section>
 
       <div className="container about-page__body">
         <Reveal className="about-page__intro">
           <p>
-            В 2017 году мы возили друзей и знакомых на своих машинах — без сайта, без каталога, по одному маршруту.
-            Сейчас у нас 26 проверенных маршрутов и команда гидов, каждый — из своего района Дагестана. Мы всё ещё
-            сами проезжаем каждый маршрут перед тем, как поставить его в каталог.
+            Начинали в 2017 году с друзей и одной машины. Сейчас — 26 проверенных маршрутов и гиды из своих районов
+            Дагестана. Каждый маршрут по-прежнему проходим сами, прежде чем поставить в каталог.
           </p>
         </Reveal>
 
@@ -44,10 +43,13 @@ export function AboutPage() {
             <h2 className="about-page__h2">Три правила, которые не меняем</h2>
           </Reveal>
           <ol className="about-page__principles">
-            {PRINCIPLES.map((text, index) => (
-              <Reveal as="li" key={text} delay={index * 0.06}>
+            {PRINCIPLES.map((item, index) => (
+              <Reveal as="li" key={item.title} delay={index * 0.06}>
                 <span className="about-page__pr-index">{String(index + 1).padStart(2, '0')}</span>
-                <p>{text}</p>
+                <div>
+                  <h3 className="about-page__pr-title">{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
               </Reveal>
             ))}
           </ol>

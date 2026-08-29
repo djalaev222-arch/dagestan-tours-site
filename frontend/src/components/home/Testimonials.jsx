@@ -40,7 +40,7 @@ export function Testimonials() {
     <section className="section testimonials section--raised">
       <div className="container">
         <Reveal className="testimonials__head">
-          <p className="mono-label mono-label--accent">// отзывы</p>
+          <p className="mono-label mono-label--accent">Отзывы</p>
           <h2 className="section-title">Что говорят после маршрута</h2>
           <p className="testimonials__meta">
             Средняя оценка <strong>4.9 из 5</strong> — по 138 отзывам путешественников за 2025 год

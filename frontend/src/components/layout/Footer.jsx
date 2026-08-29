@@ -10,7 +10,12 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__top">
-        <p className="footer__wordmark">Тропы&nbsp;Дагестана</p>
+        <div className="footer__brand">
+          <span className="footer__mark" aria-hidden="true">Д</span>
+          <span className="footer__wordmark">
+            Тропы&nbsp;Дагестана<span className="footer__dot" aria-hidden="true">.</span>
+          </span>
+        </div>
         <p className="footer__tagline">
           Авторские маршруты по горам, каньонам и древним городам Дагестана с гидами из местных сёл.
         </p>

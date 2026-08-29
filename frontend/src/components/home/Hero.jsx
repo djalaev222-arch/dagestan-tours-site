@@ -32,10 +32,10 @@ export function Hero() {
         style={shouldReduceMotion ? undefined : { y: imageY, scale: imageScale }}
       >
         <img
-          src={`${import.meta.env.BASE_URL}photos/sulak-boat.jpg`}
+          src={`${import.meta.env.BASE_URL}photos/shalbuzdag-slopes.jpg`}
           alt=""
           width="1920"
-          height="1280"
+          height="1282"
           loading="eager"
           fetchPriority="high"
           className="hero__image"
@@ -48,12 +48,13 @@ export function Hero() {
         style={shouldReduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
       >
         <motion.p
-          className="mono-label hero__eyebrow"
+          className="hero__eyebrow"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          43.0153° N, 46.8203° E · Сулакский каньон
+          <span className="hero__eyebrow-dot" aria-hidden="true" />
+          Малые группы · гиды из местных сёл
         </motion.p>
 
         <motion.h1 className="hero__title" variants={container} initial="hidden" animate="visible">

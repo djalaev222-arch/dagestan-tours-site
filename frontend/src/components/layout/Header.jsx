@@ -15,10 +15,16 @@ const NAV_LINKS = [
 const PHONE_HREF = 'tel:+79280000000'
 const PHONE_TEXT = '+7 928 000-00-00'
 
+// Routes that render a full-bleed photo hero behind the transparent header.
+function hasHeroBehind(pathname) {
+  return pathname === '/' || pathname === '/about' || /^\/catalog\/[^/]+$/.test(pathname)
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
+  const isSolid = !hasHeroBehind(location.pathname)
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24)
@@ -39,7 +45,9 @@ export function Header() {
   }, [isMenuOpen])
 
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${isMenuOpen ? 'header--menu-open' : ''}`}>
+    <header
+      className={`header ${isScrolled || isSolid ? 'header--scrolled' : ''} ${isMenuOpen ? 'header--menu-open' : ''}`}
+    >
       <div className="container header__inner">
         <NavLink to="/" className="header__logo" aria-label="Тропы Дагестана, на главную">
           <span className="header__logo-mark">ТД</span>

@@ -35,7 +35,7 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(10, 9, 8, 0.97) 0%, rgba(10, 9, 8, 0.7) 28%, rgba(10, 9, 8, 0.44) 52%, rgba(10, 9, 8, 0.5) 78%, rgba(10, 9, 8, 0.78) 100%);
+    linear-gradient(to top, rgba(20, 17, 14, 0.92) 0%, rgba(20, 17, 14, 0.6) 32%, rgba(20, 17, 14, 0.3) 58%, rgba(20, 17, 14, 0.34) 78%, rgba(20, 17, 14, 0.6) 100%);
 }
 
 .tour-hero__inner {
@@ -115,7 +115,7 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  filter: grayscale(0.2) contrast(1.02);
+  border-radius: var(--radius-md);
 }
 
 .tour-page__section {
@@ -223,6 +223,8 @@
   flex-direction: column;
   gap: var(--space-2);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   padding: var(--space-5);
   background: var(--color-surface);
 }

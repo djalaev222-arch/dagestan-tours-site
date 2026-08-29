@@ -1,6 +1,6 @@
 .footer {
   background: var(--color-bg-sunken);
-  border-top: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
   margin-top: var(--space-12);
   padding-top: var(--space-10);
 }
@@ -8,20 +8,44 @@
 .footer__top {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: var(--space-5) var(--space-8);
   padding-bottom: var(--space-8);
   border-bottom: 1px solid var(--color-border);
 }
 
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.footer__mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
 .footer__wordmark {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--color-text);
+}
+
+.footer__dot {
+  color: var(--color-accent);
 }
 
 .footer__tagline {

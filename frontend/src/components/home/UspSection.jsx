@@ -31,7 +31,7 @@ export function UspSection() {
       <div className="container approach__grid">
         <div className="approach__aside">
           <Reveal>
-            <p className="mono-label mono-label--accent">// почему с нами</p>
+            <p className="mono-label mono-label--accent">Почему с нами</p>
             <h2 className="approach__title">Не турагрегатор, а команда проводников</h2>
             <p className="approach__lede">
               Мы не перепродаём чужие туры. Каждый маршрут в списке мы прошли сами —
